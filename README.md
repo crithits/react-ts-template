@@ -6,7 +6,7 @@ Starter for React + TypeScript repos, wired to [agent-standards](https://github.
 - **`@crithits/eslint-config-react`**: React Compiler lint rules (including `set-state-in-effect`), strict type-checked TypeScript, a11y.
 - **`@crithits/tsconfig`**: strict, with `noUncheckedIndexedAccess` and `exactOptionalPropertyTypes`.
 - **Vitest + Testing Library**: role-based queries, `userEvent`.
-- **Agent files**: `AGENTS.md`, `CLAUDE.md` and `.agents/skills/` + `.claude/skills/` are synced from agent-standards. `AGENTS.local.md` is yours.
+- **Agent files**: `AGENTS.md` and `CLAUDE.md` are synced from agent-standards. `AGENTS.local.md` is yours. The React skills they mention are installed per machine (see Local setup).
 
 ## Starting a new repo
 
@@ -24,6 +24,9 @@ echo "//npm.pkg.github.com/:_authToken=YOUR_TOKEN" >> ~/.npmrc
 
 pnpm install
 pnpm dev
+
+# once per machine: the React skills for Claude Code and Codex
+npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices --skill vercel-composition-patterns -g -a claude-code -a codex -y
 ```
 
 ## Scripts
