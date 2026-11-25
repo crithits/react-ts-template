@@ -7,6 +7,11 @@ name: Update lockfile
 
 on:
   workflow_dispatch:
+    inputs:
+      from_scratch:
+        description: Delete the lockfile first and re-resolve everything (picks up newest allowed versions)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -25,6 +30,10 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: "@crithits"
 
+      - name: Remove existing lockfile
+        if: inputs.from_scratch
+        run: rm -f pnpm-lock.yaml
+
       - run: pnpm install --lockfile-only --no-frozen-lockfile
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -32,7 +41,7 @@ jobs:
       - name: Commit if changed
         id: commit
         run: |
-          if git diff --quiet -- pnpm-lock.yaml; then
+          if [ -z "$(git status --porcelain -- pnpm-lock.yaml)" ]; then
             echo "Lockfile already up to date."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
