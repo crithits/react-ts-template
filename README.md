@@ -13,9 +13,9 @@ Starter for React + TypeScript repos, wired to [agent-standards](https://github.
 1. On GitHub, **Use this template → Create a new repository**.
 2. Fill in `AGENTS.local.md`: what the repo is, its layout, its data layer.
 3. Add the repo to `repos:` in agent-standards' `.github/sync.yml`, and install the sync App on it, so it gets future rule updates.
-4. Give the repo read access to the packages: org **Packages → `eslint-config-react` / `tsconfig` → Package settings → Manage Actions access → Add repository** (role: Read).
-5. Run **Actions → Update lockfile → Run workflow** once. It regenerates `pnpm-lock.yaml` against GitHub Packages, commits it, and starts CI.
-6. For Dependabot updates to `@crithits/*`, add an org or repo Dependabot secret `DEPENDABOT_PACKAGES_TOKEN` (a token with `read:packages`).
+4. For Dependabot updates to `@crithits/*`, add an org or repo Dependabot secret `DEPENDABOT_PACKAGES_TOKEN` (a token with `read:packages`).
+
+The `@crithits/*` packages are public, so CI works in the new repo with no package-access setup. If the lockfile ever drifts from `package.json`, run **Actions → Update lockfile** (optionally *from scratch*) to regenerate and commit it.
 
 ## Local setup
 
