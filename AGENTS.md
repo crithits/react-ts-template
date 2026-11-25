@@ -1,17 +1,19 @@
 <!--
   MANAGED FILE — synced from crithits/agent-standards. Local edits will be overwritten.
-  Put anything specific to this repo in AGENTS.local.md instead.
+  Put anything specific to this repo or folder in the AGENTS.local.md next to this file.
 -->
 
 # AGENTS.md — React + TypeScript
 
-Guidance for coding agents working in this repo. Lint (`@crithits/eslint-config-react`) and typecheck (`@crithits/tsconfig`) enforce most of this; when a rule here conflicts with a lint error, fix the code, don't silence the linter.
+Guidance for coding agents working in this project. Lint (`@crithits/eslint-config-react`) and typecheck (`@crithits/tsconfig`) enforce most of this; when a rule here conflicts with a lint error, fix the code, don't silence the linter.
 
-**Also read `AGENTS.local.md`** in the repo root. It has this repo's architecture, commands that differ from the defaults below, and local conventions. Where it conflicts with this file, it wins.
+**Also read `AGENTS.local.md`** in the same folder as this file. It has this project's architecture, commands that differ from the defaults below, and local conventions. Where it conflicts with this file, it wins.
+
+In a monorepo this file may sit in a subfolder (e.g. `apps/web/`). It then covers only that folder, and the repo's root `AGENTS.md` still applies (git workflow, secrets, and so on).
 
 ## Commands
 
-Every repo exposes these `package.json` scripts (use the repo's package manager — check the lockfile):
+Every project exposes these `package.json` scripts (use the repo's package manager — check the lockfile):
 
 - `typecheck` — `tsc --noEmit`
 - `lint` — ESLint with the shared config (`lint:fix` to autofix)
@@ -22,7 +24,7 @@ Every repo exposes these `package.json` scripts (use the repo's package manager 
 
 ## Skills
 
-Deeper references live in `.agents/skills/` (and `.claude/skills/`). Load them when relevant:
+Deeper references live in `.agents/skills/` (and `.claude/skills/`) next to this file. Load them when relevant:
 
 - `vercel-react-best-practices` — performance: waterfalls, bundle size, re-renders. Use when writing or reviewing components or data fetching.
 - `vercel-composition-patterns` — component API design: compound components, avoiding boolean-prop sprawl.
