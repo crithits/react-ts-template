@@ -12,10 +12,9 @@ Starter for React + TypeScript repos, wired to [agent-standards](https://github.
 
 1. On GitHub, **Use this template → Create a new repository**.
 2. Fill in `AGENTS.local.md`: what the repo is, its layout, its data layer.
-3. Add the repo to `repos:` in agent-standards' `.github/sync.yml`, and install the sync App on it, so it gets future rule updates.
-4. For Dependabot updates to `@crithits/*`, add an org or repo Dependabot secret `DEPENDABOT_PACKAGES_TOKEN` (a token with `read:packages`).
+3. For Dependabot updates to `@crithits/*`, add an org or repo Dependabot secret `DEPENDABOT_PACKAGES_TOKEN` (a token with `read:packages`).
 
-The `@crithits/*` packages are public, so CI works in the new repo with no package-access setup. If the lockfile ever drifts from `package.json`, run **Actions → Update lockfile** (optionally *from scratch*) to regenerate and commit it.
+The `@crithits/*` packages are public, so CI works in the new repo with no package-access setup. Because the repo has `AGENTS.local.md`, agent-standards will open PRs here when the shared rules change (delete that file to opt out). If the lockfile ever drifts from `package.json`, run **Actions → Update lockfile** (optionally *from scratch*) to regenerate and commit it.
 
 ## Local setup
 
