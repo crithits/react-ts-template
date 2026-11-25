@@ -24,10 +24,18 @@ Every project exposes these `package.json` scripts (use the repo's package manag
 
 ## Skills
 
-Deeper references live in `.agents/skills/` (and `.claude/skills/`) next to this file. Load them when relevant:
+Two skills hold deeper React guidance. They're installed once per machine, not in this repo. Load them when relevant:
 
 - `vercel-react-best-practices` — performance: waterfalls, bundle size, re-renders. Use when writing or reviewing components or data fetching.
 - `vercel-composition-patterns` — component API design: compound components, avoiding boolean-prop sprawl.
+
+**If either is missing from your available skills,** tell the user once, at the start of your first reply in the session, then carry on with the task (everything else in this file still applies). Give them this command, which installs both for Claude Code and Codex:
+
+```sh
+npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices --skill vercel-composition-patterns -g -a claude-code -a codex -y
+```
+
+For another agent, swap the `-a` values (e.g. `-a cursor`). Don't run it yourself unless the user asks: it installs into their home directory. Skills load when a new session starts. `npx skills update -g` updates them later.
 
 ## Effects: `useEffect` is a last resort
 
@@ -102,4 +110,4 @@ Reference: https://react.dev/learn/you-might-not-need-an-effect
 - Do not edit generated files, lockfiles by hand, or `*.d.ts` from packages.
 - Match existing patterns in the codebase before introducing new ones. If you think a pattern is wrong, say so rather than silently diverging.
 - Keep diffs focused on the task; no drive-by refactors.
-- Do not edit `AGENTS.md`, `CLAUDE.md`, or anything under `.agents/skills/` / `.claude/skills/` — they're synced from `agent-standards`. Don't override shared lint rules in `eslint.config.js` to get past an error. Propose changes in `agent-standards` instead.
+- Do not edit `AGENTS.md` or `CLAUDE.md` — they're synced from `agent-standards`. Don't override shared lint rules in `eslint.config.js` to get past an error. Propose changes in `agent-standards` instead.
