@@ -24,18 +24,25 @@ Every project exposes these `package.json` scripts (use the repo's package manag
 
 ## Skills
 
-Two skills hold deeper React guidance. They're installed once per machine, not in this repo. Load them when relevant:
+These skills are installed once per machine, not in this repo. Load them when relevant:
 
 - `vercel-react-best-practices` — performance: waterfalls, bundle size, re-renders. Use when writing or reviewing components or data fetching.
 - `vercel-composition-patterns` — component API design: compound components, avoiding boolean-prop sprawl.
+- `pr-description` — titles and descriptions for pull requests. **Always** use it when you open a PR or edit a PR's title or description, including inside another workflow that opens one. Don't write a PR body without it.
 
-**If either is missing from your available skills,** tell the user once, at the start of your first reply in the session, then carry on with the task (everything else in this file still applies). Give them this command, which installs both for Claude Code and Codex:
+**If any of them is missing from your available skills,** tell the user once, at the start of your first reply in the session, then carry on with the task (everything else in this file still applies). Give them the command for each missing skill; these install for Claude Code and Codex:
 
 ```sh
 npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices --skill vercel-composition-patterns -g -a claude-code -a codex -y
 ```
 
-For another agent, swap the `-a` values (e.g. `-a cursor`). Don't run it yourself unless the user asks: it installs into their home directory. Skills load when a new session starts. `npx skills update -g` updates them later.
+```sh
+npx skills add crithits/agent-standards --skill pr-description -g -a claude-code -a codex -y
+```
+
+For another agent, swap the `-a` values (e.g. `-a cursor`). Don't run them yourself unless the user asks: they install into their home directory. Skills load when a new session starts. `npx skills update -g` updates them later.
+
+If you're about to open a PR and `pr-description` is still missing, follow `https://github.com/crithits/agent-standards/blob/main/skills/pr-description/SKILL.md` instead of improvising.
 
 ## Effects: `useEffect` is a last resort
 
